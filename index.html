@@ -1,0 +1,128 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html data-ng-app="workmanapp">
+<head>
+	<title>MIT Aptitude Test 2018</title>
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/workman.css">
+</head>
+<body>
+	<!-- test parameters -->
+<!-- 	<div data-ng-controller="apptestctrl">
+		Angular Status: {{testObj.angTest}} <br>
+		Test Text: <input type="text" data-ng-model="testText"/> <br>
+		Response: {{testText}} <br>
+	</div> -->
+	<!-- END - test parameters -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+				<header>
+					<img class="img-responsive center-block" src="img/uoklogo.png" alt="UOK LOGO">
+					<h4 class="text-center">UNIVERSITY OF KELANIYA</h4>
+					<h4 class="text-center hidden-xs">B.Sc (Honours) Degree in Management & Information Technology (MIT) 2017 / 2018</h4>
+					<h4 class="text-center visible-xs">B.Sc. (Hons) in MIT 2017/2018</h4>
+					<h4 class="text-center">Aptitude Test 2018</h4>
+					<h4 class="text-center small"><strong>ONLINE REGISTRATION</strong></h4> 
+					<hr>
+				</header> <!-- col-xs-12 -->
+			</div> <!-- row -->
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div data-ng-controller="workmanctrl">
+					<form>
+						<div class="form-group">
+							<label for="fullName">Full Name of Candidate (Mr/Ms)</label>
+							<input type="text" class="form-control" id="fullName" placeholder="Full Name">
+						</div>
+						<div class="form-group">
+							<label for="surnameWithInitials">Surname of Candidate with Initials</label>
+							<input type="text" class="form-control" id="surnameWithInitials" placeholder="Surname with Initials">
+						</div>
+						<div class="form-group">
+							<label for="nationalId">National ID No</label>
+							<input type="text" class="form-control" id="nationalId" placeholder="National ID">
+						</div>
+						<div class="form-group">
+							<label for="addressLine1">Address Line 1</label>
+							<input type="text" class="form-control" id="addressLine1" placeholder="Address Line 1">
+						</div>
+						<div class="form-group">
+							<label for="addressLine2">Address Line 2</label>
+							<input type="text" class="form-control" id="addressLine2" placeholder="Address Line 2">
+						</div>
+						<div class="form-group">
+							<label for="addressLine3">Address Line 3</label>
+							<input type="text" class="form-control" id="addressLine3" placeholder="Address Line 3">
+						</div>
+						<div class="form-group">
+							<label for="telephoneNo">Telephone No</label>
+							<input type="number" class="form-control" id="telephoneNo" placeholder="Telephone No">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">District in which the candidate sat for the G.C.E(A/L) Examination 2017</label>
+							<select id="district" multiple="true" class="form-control">
+								<option>Ampara</option>
+						        <option>Anuradhapura</option>
+						        <option>Badulla</option>
+						        <option>Batticaloa</option>
+						        <option>Colombo</option>
+						        <option>Galle</option>
+						        <option>Gampaha</option>
+						        <option>Hambantota</option>
+						        <option>Jaffna</option>
+						        <option>Kalutara</option>
+						        <option>Kandy</option>
+						        <option>Kegalle</option>
+						        <option>Kilinochchi</option>
+						        <option>Kurunegala</option>
+						        <option>Mannar</option>
+						        <option>Matale</option>
+						        <option>Matara</option>
+						        <option>Monaragala</option>
+						        <option>Mullaitivu</option>
+						        <option>Nuwara Eliya</option>
+						        <option>Polonnaruwa</option>
+						        <option>Puttalam</option>
+						        <option>Ratnapura</option>
+						        <option>Trincomalee</option>
+						        <option>Vavuniya</option>
+							</select>
+						</div>
+						
+
+
+
+					  <br><br><br>
+					  <div class="form-group">
+					    <label for="exampleInputFile">File input</label>
+					    <input type="file" id="exampleInputFile">
+					    <p class="help-block">Example block-level help text here.</p>
+					  </div>
+					  <div class="checkbox">
+					    <label>
+					      <input type="checkbox"> Check me out
+					    </label>
+					  </div>
+					  <button type="submit" class="btn btn-default">Submit</button>
+					</form>
+				</div>
+			</div> <!-- col-xs-12 -->
+		</div> <!-- row -->
+		<div class="row">
+			<div class="col-xs-12">
+				<footer>
+				</footer>
+			</div> <!-- col-xs-12 -->
+		</div> <!-- row -->
+
+	</div> <!-- container-fluid -->
+
+	<!-- javascript -->
+	<script src="js/angular.min.js"></script>
+	<script src="js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+	<script src="js/workman.js"></script>
+</body>
+</html>

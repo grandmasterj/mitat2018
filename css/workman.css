@@ -1,0 +1,15 @@
+/*workman.css*/
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+header {
+	padding-top: 15px;
+}
+
+header img {
+	max-width: 150px !important;
+}
+
+header h4 {
+	color: #4b1311;
+}
