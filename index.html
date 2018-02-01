@@ -9,13 +9,16 @@
 </head>
 <body>
 	<!-- test parameters -->
-<!-- 	<div data-ng-controller="apptestctrl">
+	<div data-ng-controller="apptestctrl">
 		Angular Status: {{testObj.angTest}} <br>
 		Test Text: <input type="text" data-ng-model="testText"/> <br>
 		Response: {{testText}} <br>
-	</div> -->
+		Valid:{{mitatRegForm.$valid}}<br>
+		mitatRegForm.fullName.$error.required: {{mitatRegForm.fullName.$error.required}}<br>
+		myForm.myInput.$valid: {{mitatRegForm.fullName.$valid}}
+	</div>
 	<!-- END - test parameters -->
-	<div class="container-fluid">
+	<div class="container regForm">
 		<div class="row">
 			<div class="col-xs-12">
 				<header>
@@ -24,7 +27,7 @@
 					<h4 class="text-center hidden-xs">B.Sc (Honours) Degree in Management & Information Technology (MIT) 2017 / 2018</h4>
 					<h4 class="text-center visible-xs">B.Sc. (Hons) in MIT 2017/2018</h4>
 					<h4 class="text-center">Aptitude Test 2018</h4>
-					<h4 class="text-center small"><strong>ONLINE REGISTRATION</strong></h4> 
+					<h4 class="text-center small"><strong>ONLINE REGISTRATION FORM</strong></h4> 
 					<hr>
 				</header> <!-- col-xs-12 -->
 			</div> <!-- row -->
@@ -32,83 +35,312 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div data-ng-controller="workmanctrl">
-					<form>
-						<div class="form-group">
-							<label for="fullName">Full Name of Candidate (Mr/Ms)</label>
-							<input type="text" class="form-control" id="fullName" placeholder="Full Name">
-						</div>
-						<div class="form-group">
-							<label for="surnameWithInitials">Surname of Candidate with Initials</label>
-							<input type="text" class="form-control" id="surnameWithInitials" placeholder="Surname with Initials">
-						</div>
-						<div class="form-group">
-							<label for="nationalId">National ID No</label>
-							<input type="text" class="form-control" id="nationalId" placeholder="National ID">
-						</div>
-						<div class="form-group">
-							<label for="addressLine1">Address Line 1</label>
-							<input type="text" class="form-control" id="addressLine1" placeholder="Address Line 1">
-						</div>
-						<div class="form-group">
-							<label for="addressLine2">Address Line 2</label>
-							<input type="text" class="form-control" id="addressLine2" placeholder="Address Line 2">
-						</div>
-						<div class="form-group">
-							<label for="addressLine3">Address Line 3</label>
-							<input type="text" class="form-control" id="addressLine3" placeholder="Address Line 3">
-						</div>
-						<div class="form-group">
-							<label for="telephoneNo">Telephone No</label>
-							<input type="number" class="form-control" id="telephoneNo" placeholder="Telephone No">
-						</div>
-						<div class="form-group">
-							<label for="exampleInputPassword1">District in which the candidate sat for the G.C.E(A/L) Examination 2017</label>
-							<select id="district" multiple="true" class="form-control">
-								<option>Ampara</option>
-						        <option>Anuradhapura</option>
-						        <option>Badulla</option>
-						        <option>Batticaloa</option>
-						        <option>Colombo</option>
-						        <option>Galle</option>
-						        <option>Gampaha</option>
-						        <option>Hambantota</option>
-						        <option>Jaffna</option>
-						        <option>Kalutara</option>
-						        <option>Kandy</option>
-						        <option>Kegalle</option>
-						        <option>Kilinochchi</option>
-						        <option>Kurunegala</option>
-						        <option>Mannar</option>
-						        <option>Matale</option>
-						        <option>Matara</option>
-						        <option>Monaragala</option>
-						        <option>Mullaitivu</option>
-						        <option>Nuwara Eliya</option>
-						        <option>Polonnaruwa</option>
-						        <option>Puttalam</option>
-						        <option>Ratnapura</option>
-						        <option>Trincomalee</option>
-						        <option>Vavuniya</option>
-							</select>
-						</div>
-						
-
-
-
-					  <br><br><br>
-					  <div class="form-group">
-					    <label for="exampleInputFile">File input</label>
-					    <input type="file" id="exampleInputFile">
-					    <p class="help-block">Example block-level help text here.</p>
-					  </div>
-					  <div class="checkbox">
-					    <label>
-					      <input type="checkbox"> Check me out
-					    </label>
-					  </div>
-					  <button type="submit" class="btn btn-default">Submit</button>
+					<form role="form" 
+					name="mitatRegForm"
+					ng-submit="mitatRegForm.$valid"
+					novalidate>
+						<fieldset>
+						<div class="list-group">
+							<div class="list-group-item">
+								<!-- full name -->
+								<div class="form-group">
+									<label for="fullName">Full Name of Candidate</label>
+									<input type="text" class="form-control" name="fullName" placeholder="Ex: Firstname Middlename Surname" required ng-model="fullName" pattern="[a-zA-Z ]" ng-pattern-restrict>
+									<!-- show errors -->
+									<div role="alert" ng-show="mitatRegForm.$submitted || mitatRegForm.fullName.$touched">
+										<!-- required -->
+										<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.fullName.$error.required">Full Name required</div>
+										<!-- invalid -->
+										<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.fullName.$invalid">Invalid Full Name - alphabets only</div>
+						            </div>
+								</div>
+								<!-- surname with initials -->
+								<div class="form-group">
+									<label for="surnameWithInitials">Surname of Candidate with Initials</label>
+									<input type="text" class="form-control" name="surnameWithInitials" placeholder="Ex: Surname F M" required ng-model="surnameWithInitials">
+									<!-- show error -->
+									<div role="alert" ng-show="mitatRegForm.$submitted || mitatRegForm.surnameWithInitials.$touched">
+										<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.surnameWithInitials.$error.required">Surname with Initials required</div>
+						            </div>
+								</div>
+								<!-- national ID no -->
+								<div class="form-group">
+									<label for="nationalId">National ID No</label>
+									<input type="text" class="form-control" name="nationalId" placeholder="Ex: 123456789v" required ng-model="nationalId">
+									<!-- show error -->
+									<div role="alert" ng-show="mitatRegForm.$submitted || mitatRegForm.nationalId.$touched">
+										<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.nationalId.$error.required">National ID No required</div>
+						            </div>
+								</div>
+								<!-- address line 1 -->
+								<div class="form-group">
+									<label for="addressLine1">Address Line 1</label>
+									<input type="text" class="form-control" name="addressLine1" placeholder="Ex: 111A" required ng-model="addressLine1">
+									<!-- show error -->
+									<div role="alert" ng-show="mitatRegForm.$submitted || mitatRegForm.addressLine1.$touched">
+										<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.addressLine1.$error.required">Address required</div>
+						            </div>
+								</div>
+								<!-- address line 2 -->
+								<div class="form-group">
+									<label for="addressLine2">Address Line 2</label>
+									<input type="text" class="form-control" name="addressLine2" placeholder="Ex: Street Name" ng-model="addressLine2">
+								</div>
+								<!-- address line 3 -->
+								<div class="form-group">
+									<label for="addressLine3">Address Line 3</label>
+									<input type="text" class="form-control" name="addressLine3" placeholder="Ex: City Name" ng-model="addressLine3">
+								</div>
+								<!-- telephone no -->
+								<div class="form-group">
+									<label for="telephoneNo">Telephone No</label>
+									<input type="number" class="form-control" name="telephoneNo" placeholder="Ex: 0123456789" required ng-model="telephoneNo">
+									<!-- show error -->
+									<div role="alert" ng-show="mitatRegForm.$submitted || mitatRegForm.telephoneNo.$touched">
+										<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.telephoneNo.$error.required">Telephone No required</div>
+						            </div>
+								</div>
+								<!-- district -->
+								<div class="form-group">
+									<label for="district">District in which the candidate sat for the G.C.E(A/L) Examination 2017</label>
+									<select id="district" name="district" class="form-control" 
+							    	ng-model="district" 
+							    	ng-options="obj.text for obj in districtsObj track by obj.value"
+							    	required>
+							    		<option value="">-- Select District --</option>
+									</select>
+									<!-- show error -->
+									<div role="alert" ng-show="mitatRegForm.$submitted || mitatRegForm.district.$touched">
+										<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.district.$error.required">District required</div>
+						            </div>
+								</div>
+							</div> <!-- list-group-item -->
+							<div class="list-group-item">
+								<!-- A/L index no -->
+								<div class="form-group">
+									<label for="alIndexNo">A/L Index No</label>
+									<input type="number" class="form-control" name="alIndexNo" placeholder="Ex: 1234567" required ng-model="alIndexNo">
+									<!-- show error -->
+									<div role="alert" ng-show="mitatRegForm.$submitted || mitatRegForm.alIndexNo.$touched">
+										<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.alIndexNo.$error.required">A/L Index No required</div>
+						            </div>
+									<!-- check A/L index no -->
+									<!-- <div ng-show="movieForm.$pending.movienameExists" class="alert alert-info">
+						                Checking if this moviename is available...</div>
+									</div> -->
+								</div>
+								<!-- z-score -->
+								<div class="form-group">
+									<label for="zscore">Z-Score</label>
+									<input type="number" class="form-control" name="zscore" placeholder="Ex: 1.234" required ng-model="zscore">
+									<!-- show error -->
+									<div role="alert" ng-show="mitatRegForm.$submitted || mitatRegForm.zscore.$touched">
+										<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.zscore.$error.required">Z-Score required</div>
+						            </div>
+								</div>
+								<!-- A/L results -->
+								<div class="form-group"">
+									<label for="zscore"> G.C.E A/L Results</label>
+									<div class="form-horizontal">
+										<div class="form-group">
+									  		<label class="col-sm-6 subject-cbox-lbl control-label checkbox">
+										    	<input type="checkbox" name="" value="" id="hmCbox" ng-model="hmCbox">
+										    	Higher Mathematics
+										    </label>
+										    <div class="col-sm-6">
+										    	<select id="alHM" name="alHM" class="form-control" 
+										    	ng-disabled="!hmCbox"
+										    	ng-model="alHM" 
+										    	ng-options="obj.text for obj in resultsObj track by obj.value"
+										    	data-ng-required="hmCbox">
+										    		<option value="">-- Select Result --</option>
+												</select>
+												<!-- show error -->
+												<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.alHM.$error.required">Result required</div>
+										    </div>
+										</div>
+										<div class="form-group">
+									  		<label class="col-sm-6 subject-cbox-lbl control-label checkbox">
+										    	<input type="checkbox" name="" value="" id="phyCbox" ng-model="phyCbox">
+										    	Physics
+										    </label>
+										    <div class="col-sm-6">
+										    	<select id="alPhy" name="alPhy" class="form-control" 
+										    	ng-disabled="!phyCbox"
+										    	ng-model="alPhy" 
+										    	ng-options="obj.text for obj in resultsObj track by obj.value"
+										    	data-ng-required="phyCbox">
+										    		<option value="">-- Select Result --</option>
+												</select>
+												<!-- show error -->
+												<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.alPhy.$error.required">Result required</div>
+										    </div>
+										</div>
+										<div class="form-group">
+									  		<label class="col-sm-6 subject-cbox-lbl control-label checkbox">
+										    	<input type="checkbox" name="" value="" id="bioCbox" ng-model="bioCbox">
+										    	Biology
+										    </label>
+										    <div class="col-sm-6">
+										    	<select id="alBio" name="alBio" class="form-control" 
+										    	ng-disabled="!bioCbox" 
+										    	ng-model="alBio" 
+										    	ng-options="obj.text for obj in resultsObj track by obj.value"
+										    	data-ng-required="bioCbox">
+										    		<option value="">-- Select Result --</option>
+												</select>
+												<!-- show error -->
+												<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.alBio.$error.required">Result required</div>
+										    </div>
+										</div>
+										<div class="form-group">
+									  		<label class="col-sm-6 subject-cbox-lbl control-label checkbox">
+										    	<input type="checkbox" name="" value="" id="cmCbox" ng-model="cmCbox">
+										    	Mathematics/ Combined Mathematics
+										    </label>
+										    <div class="col-sm-6">
+										    	<select id="alCM" name="alCM" class="form-control" 
+										    	ng-disabled="!cmCbox"
+										    	ng-model="alCM" 
+										    	ng-options="obj.text for obj in resultsObj track by obj.value"
+										    	data-ng-required="cmCbox">
+										    		<option value="">-- Select Result --</option>
+												</select>
+												<!-- show error -->
+												<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.alCM.$error.required">Result required</div>
+										    </div>
+										</div>
+										<div class="form-group">
+									  		<label class="col-sm-6 subject-cbox-lbl control-label checkbox">
+										    	<input type="checkbox" name="" value="" id="cheCbox" ng-model="cheCbox">
+										    	Chemistry
+										    </label>
+										    <div class="col-sm-6">
+										    	<select id="alChe" name="alChe" class="form-control" 
+										    	ng-disabled="!cheCbox"
+										    	ng-model="alChe" 
+										    	ng-options="obj.text for obj in resultsObj track by obj.value"
+										    	data-ng-required="cheCbox">
+										    		<option value="">-- Select Result --</option>
+												</select>
+												<!-- show error -->
+												<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.alChe.$error.required">Result required</div>
+										    </div>
+										</div>
+										<div class="form-group">
+											<label class="subject-cbox-lbl col-sm-6 control-label checkbox">
+												<input type="checkbox" name="" value="" id="ictCbox" ng-model="ictCbox">
+									    		Information & Communication Technology
+									    	</label>
+									    	<div class="col-sm-6">
+										    	<select id="alICT" name="alICT" class="form-control" 
+										    	ng-disabled="!ictCbox" 
+										    	ng-model="alICT" 
+										    	ng-options="obj.text for obj in resultsObj track by obj.value"
+										    	data-ng-required="ictCbox">
+										    		<option value="">-- Select Result --</option>
+												</select>
+												<!-- show error -->
+												<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.alICT.$error.required">Result required</div>
+									    	</div>
+										</div>
+										<div class="form-group">
+											<label class="subject-lbl col-sm-6 control-label checkbox">
+									    		English G.C.E (A/L) Examination
+									    	</label>
+									    	<div class="col-sm-6">
+										    	<select id="alEng" name="alEng" class="form-control"
+									    		ng-model="alEng"
+									    		ng-options="obj.text for obj in resultsObj track by obj.value"
+									    		required>
+										    		<option value="">-- Select Result --</option>
+												</select>
+												<!-- show error -->
+												<div role="alert" ng-show="mitatRegForm.$submitted || mitatRegForm.alEng.$touched">
+													<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.alEng.$error.required">Result required</div>
+									            </div>
+									    	</div>
+										</div>
+									</div> <!-- form-horizontal -->
+								</div> <!-- checkbox group-->
+							</div> <!-- list-group-item -->
+							<div class="list-group-item">
+								<!-- O/L year -->
+								<div class="form-group">
+									<label for="olYear">G.C.E O/L Year</label>
+									<input type="text" class="form-control" name="olYear" placeholder="Ex: 1234" required ng-model="olYear">
+									<!-- show error -->
+									<div role="alert" ng-show="mitatRegForm.$submitted || mitatRegForm.olYear.$touched">
+										<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.olYear.$error.required">O/L Year required</div>
+						            </div>
+								</div>
+								<!-- O/L results -->
+								<div class="form-group">
+									<label for="addressLine2">G.C.E O/L Results</label>
+									<div class="form-horizontal">
+										<div class="form-group">
+									  		<label class="col-sm-6 subject-lbl control-label checkbox">
+										    	Mathematics
+										    </label>
+										    <div class="col-sm-6">
+										    	<select class="form-control"
+									    		ng-model="olMath"
+									    		ng-options="obj.text for obj in resultsObj track by obj.value"
+									    		required>
+										    		<option value="">-- Select Result --</option>
+												</select>
+										    </div>
+										</div>
+										<div class="form-group">
+									  		<label class="col-sm-6 subject-lbl control-label checkbox">
+										    	English
+										    </label>
+										    <div class="col-sm-6">
+										    	<select class="form-control"
+									    		ng-model="olEng"
+									    		ng-options="obj.text for obj in resultsObj track by obj.value"
+									    		required>
+										    		<option value="">-- Select Result --</option>
+												</select>
+										    </div>
+										</div>
+									</div> <!-- form-horizontal -->
+								</div>
+							</div> <!-- list-group-item -->
+							<div class="list-group-item">
+								<!-- priority -->
+								<div class="form-group">
+									<label for="priorityNo">What is the priority you have given in UGC Application for B.Sc (Honours) Degree in Management & Information Technology</label>
+									<input type="text" class="form-control" name="priorityNo" placeholder="Ex: 12" required ng-model="priorityNo">
+									<!-- show error -->
+									<div role="alert" ng-show="mitatRegForm.$submitted || mitatRegForm.priorityNo.$touched">
+										<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.priorityNo.$error.required">Priority No required</div>
+						            </div>
+								</div>
+							</div> <!-- list-group-item -->
+							<div class="list-group-item">
+								<center>
+									<!-- show incomplete form error -->
+									<div class="alert alert-danger" role="alert" ng-show="mitatRegForm.$error.required">Incomplete required fields found</div>
+									<button class="btn btn-primary"
+									type="submit" 
+									ng-disabled="mitatRegForm.$invalid">
+										<i class="glyphicon glyphicon-ok"></i>
+										Register
+									</button>
+									<button type="reset" class="btn btn-primary" ng-disabled="mitatRegForm.$prestine">
+										<i class="glyphicon glyphicon-refresh"></i>
+										Reset
+									</button>
+									<button ng-click=testClick()>
+										test
+									</button>
+								</center>	
+							</div> <!-- list-group-item -->
+						</div> <!-- list-group -->
+						</fieldset>
 					</form>
-				</div>
+				</div> <!-- workmanctrl -->
 			</div> <!-- col-xs-12 -->
 		</div> <!-- row -->
 		<div class="row">
